@@ -1,1 +1,22 @@
+User-story Description:
 
+As a staff, i would like to be able to update the process of current orders, so that i can transmit the lastest information 
+to customers.
+
+Acceptance Criteria:
+
+When the order is available for pickup, customers would be indicated in the order interface to collect it.
+
+A staff can cancel the order when customers change their minds.
+
+The order will disappear from system when it is finished.
+
+Customers should be able to evaluate the dining experience and write some feedback, so the restaurant can improve the service quality.
+
+Priority:
+
+Essential
+
+Size:
+
+2 story points(1 point = 2hours)
