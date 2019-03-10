@@ -1,3 +1,17 @@
+Epic Stories
+As a stuff, I want to maintain the inventory of their various ingredients by checking the inventory level that system provided, so I can fullfill the ingredients on time.
+
+User Stories
+
+S-US1: As a stuff, I want to be able create and delete product in system by input the product name, ingredients and ingredient demand quantity, so that I can create the connection between the product and ingredients
+
+S-US2: As a stuff, I want to be able to create and delete ingredient types in system, so that I can bring in new and cancel any product.
+
+S-US3: As a stuff, I want to be able to check the inventory levels at any time, and the system should be able to update the inventory levels once the orders are created, so that I can check and prepare to replenish the stocks.
+
+S-US4: As a stuff, I want to be able to get the notification to my email when any ingredients are  reaching insufficient level, so that I can prevent any ingredient insufficient problem.
+
+
 User Story Points
 1 User Story Point (USP) = 3 hours.
 
