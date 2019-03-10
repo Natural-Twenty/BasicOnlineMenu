@@ -1,0 +1,59 @@
+Epic Stories
+As a customer, I want to create an order from two types of mains, add sides and drinks if I wish, place the order and check the order, all done online,
+so I can avoid queue times.
+
+User Stories
+C-US1: As a customer, I want to be able to order from two types of mains, so I can have my preferred choice.
+C-US2: As a customer, I want to be able to modify the buns, patties and other ingredients of my selected type of main, so only ingredients I enjoy are included in the meal.
+C-US3: As a customer, I should have the choice to add sides or drinks to my order, so I do I do not have to make seperate orders for the sides or drinks.
+C-US4: As a customer, I want to be able to complete and send in my order online, so I do not have to go to the outlet to order.
+C-US5: As a customer, I want to be able to check status of my order, so I know when to collect my order.
+
+User Story Points
+1 User Story Point (USP) = 3 hours.
+
+C-US1: 1 USP.
+C-US2: 2 USP
+C-US3: 2 USP
+C-US4: 3 USP
+C-US5: 2 USP
+
+Priority of Implementation
+Scale of 1-5. 1 being lowest priority, 5 being highest.
+
+C-US1: 4
+C-US2: 3
+C-US3: 2
+C-US4: 5
+C-US5: 1
+
+Acceptance criteria:
+C-US1
+1. The two types of mains are either burger or wrap. 
+2. The base price of the main types are displayed for the customer.
+
+C-US2
+
+1. The customer can modify the type of buns for their selected type of main. Some examples of bun types are: muffin buns and sesame buns.
+2. The customer can modify the number of buns but there is a limit on the number of buns the customer can modifiy based on the type of burger permitted.
+   For example, if the permitted burgers are single, double and triple burgers, then the limit of modification on the customer is 4.
+3. The customer can modifiy the type of patties for their selected type of main. Some examples of patty types are: chicken, vegetarian and beef patties.
+4. The customer can modify the number of patties for their selected type but there is a maximum limit on the number of patties based on
+   the permitted burgers (similar to acceptance criteria 2).
+5. The customer can add other ingredients to their selected type of main. Some examples (but not limited to) of other ingredients are:
+   tomato, lettuce, tomato sauce and swiss cheese.
+6. Each ingredient displays the price for its inclusion for the customer.
+7. After the gourmet creation (or modification) process, the total net price is displayed to the customer based on choice made during the process.
+
+C-US3
+1. The customer can optionally, add other sides or drinks to their order. Some sides include: nuggets and fries.
+2. The customer has options on the size or quantities of the side. For example: 6-pack nuggets or 3-pack nuggets for quantity, small, medium or large fries for size.
+3. The price for each side is displayed for the customer.
+
+C-US4
+1. The entire ordering process is completed online and sent to the outlet.
+2. The customer must check out to complete the order.
+3. An order-ID is issues to the customer and may collect their order using this ID.
+
+C-US5
+1. The status of whether the order is ready or not can be checked by the customer.
