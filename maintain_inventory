@@ -1,0 +1,42 @@
+User Story Points
+1 User Story Point (USP) = 3 hours.
+
+S-US1: 2 USP
+S-US2: 2 USP
+S-US3: 1 USP
+S-US4: 2 USP
+
+Priority of Implementation
+Scale of 1-5. 1 being lowest priority, 3 being highest.
+
+S-US1: 4
+S-US2: 3
+S-US3: 2
+S-US4: 1
+
+Acceptance criteria:
+
+S-US1:
+1. Stuff can create and delete the products by input the products name, ingredients name and ingredients unit and quantity.
+2. After the stuff click submit or delete button, the system will update the database.
+
+S-US2: 
+
+1. Stuff can create and delete the ingredients by input the ingredients name, unit, quantities and notification threshold. Types are whole quantities, drink bottle amount, millilitre, grams.
+2. After the stuff click submit or delete button, the system will update the database.
+
+S-US3:
+1. The system will provide a search text box. Stuff can input the ingredients name for searching, even the incomplete name can also be searched.
+2. Then the system will show the ingredient information such as name, unit, inventory level on the screen.
+
+S-US4:
+1. The system will check and update the availablity after every order be created. 
+2. If the ingredients reach the notification threshhold, the system will send a email to stuff.
+3. The email content should include the ingredient name, the notification threshhold.
+4. If the ingredients reach 0 level, the system will update the relative product availability.
+5. If an order is created, the relative ingredient will be decremented accordingly. 
+6. Stuff can click the button "update ingredient" manually.
+7. If the ingredients are fullfilled, the system will update the product availability.
+
+
+
