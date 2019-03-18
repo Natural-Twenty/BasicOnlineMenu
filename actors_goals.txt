@@ -7,6 +7,7 @@ Actors:
 
 Goals:
 1: For customers, they can rent cars online prior to their sceheduled pick-up time and location.
-2: For car company(admin and manager), it aims to develop a web-based car rental system.
-3: For insurance company, it provides insurance for each car.
-4. For credit handlers, they ensure the correctness of payment detail. 
+2: For admins, they aims to update the car list with additional cars or correct the list.
+3: For managers, they want to generate weekly reports for various uses (profit projections, check car availabilities, etc)
+4: For insurance company, it provides insurance for each car as a service.
+5: For credit handlers, they ensure the validity of payment details.
