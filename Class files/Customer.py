@@ -5,6 +5,7 @@ Created on Thu Apr  4 17:12:40 2019
 
 @author: z5075710
 """
+#Need to validate using isinstance(x, int)/(y, str)
 
 class Customer:
     
