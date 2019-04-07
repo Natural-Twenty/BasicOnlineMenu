@@ -4,6 +4,7 @@
 Created on Fri Apr  5 16:43:40 2019
 
 @author: z5075710
+         z5177881
 """
 import random
 class Order:
@@ -24,9 +25,15 @@ class Order:
         self._drinkPrice = drinkPrice
         self._orderID = random.randint(1,10)
         print(f'Here is your order ID: {self._orderID}')
-         
+    
+    # Update when the order is ready to pick up
+    def preparation_status(self):
+        self._is_ready = True
         
     @property
+    def is_ready(self):
+        return self._is_ready
+    
     def main(self):
         return self._main
     
