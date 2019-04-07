@@ -4,6 +4,7 @@
 Created on Thu Apr  4 16:41:40 2019
 
 @author: z5075710, The Minh Tran
+         z5177881
 """
 #Need to validate using isinstance(x, int)/(y, str)
 
@@ -12,6 +13,12 @@ class Staff:
         self._order = []
         self._username = username
         self._password = password
+     
+    def authenticate(self, username, password):
+        if (self._username == username and self._password = password):
+            return True
+        else:
+            return False
         
     #Functions involving username
     @property
