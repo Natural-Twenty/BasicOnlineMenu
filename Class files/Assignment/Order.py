@@ -4,13 +4,14 @@
 Created on Fri Apr  5 16:43:40 2019
 
 @author: z5075710
-         z5177881
 """
 import random
+from Inventory import Inventory
+from Main import Main
 class Order:
     def __init__(self, main, mainBun, mainBunNo, mainPatty, mainPattyNo, mainPrice, 
                  ingredients = [], ingredientsPrice= 0,
-                 sides = [], drinks=[], sidePrice = 0, drinkPrice = 0):
+                 sides = [], drinks=[], sidePrice = 0, drinkPrice = 0, status = 'Not ready'):
         self._main = main
         self._mainBun = mainBun
         self._mainBunNo = mainBunNo
@@ -24,16 +25,63 @@ class Order:
         self._sidePrice = sidePrice
         self._drinkPrice = drinkPrice
         self._orderID = random.randint(1,10)
+        self._status = status
+        self._obj_inventory = Inventory()
+        self._obj_main = Main()
+        if main == 'burger':
+            mainBunList = self._obj_main.bun_type
+            mainQuant = Inventory.mainQuant[mainBunList.index(mainBun)]
+            print(f'Checking inventory... {mainQuant} {mainBun} {main} in stock')
+            print(f'{mainBun} {mainBunNo} buns ordered')
+        else:
+            mainBunList = self._obj_main.bun_type
+            mainQuant = self._obj_inventory.mainQuant[2+mainBunList.index(mainBun)]
+            print(f'Checking inventory... {mainQuant} {mainBun} in stock')
+            print(f'{mainBunNo} buns ordered')
+        
+        pattyList = self._obj_main.patty_type
+        pattyQuant = self._obj_inventory.mainQuant[4+pattyList.index(mainPatty)]
+        print(f'Checking inventory... {pattyQuant} kg of {mainPatty} patties in sotck')
+        print(f'{mainPattyNo} {mainPatty} ordered')
+        
+        if any(ingredients) is True:
+            for i in ingredients:
+                ingredientList = self._obj_inventory.ingredient
+                ingredientQuant = self._obj_inventory.ingredientQuant[ingredientList.index(i)]
+                print(f'Checking inventory... {ingredientQuant} {i} in stock')
+                
+        if any(sides) is True:
+            for s in sides:
+                sideSplit = s.split(' ')
+                if len(sideSplit) > 1:
+                    sideList = self._obj_inventory.side
+                    sideOrder = float(sideSplit[0])
+                    sideName = sideSplit[-1]
+                    sideQuant = self._obj_inventory.sideQuant[sideList.index(sideName)]
+                    if sideName == 'fries':
+                        print(f'Checking inventory... {sideQuant} kg of {sideName} in stock')
+                        print(f'(sideOrder) of {sideName} ordered')
+                    else:
+                        print(f'Checking inventory... {sideQuant} of {sideName} in stock')
+                        print(f'{sideOrder} {sideName} ordered')
+                else:
+                    print(f'Checking inventory... {sideQuant} of {sideSplit} in stock')
+                    
+        if any(drinks) is True:
+            for d in drinks:
+                drinkList = self._obj_inventory.side
+                drinkSplit = d.split(' ')
+                drinkName = drinkSplit[-1]
+                drinkType = drinkSplit[1]
+                drinkQuant = self._obj_inventory.sideQuant[drinkList.index(drinkName)]
+                print(f'Checking inventory... {drinkQuant} {drinkType}s of {drinkName} in stock')
+        
+        
         print(f'Here is your order ID: {self._orderID}')
-    
-    # Update when the order is ready to pick up
-    def preparation_status(self):
-        self._is_ready = True
+        print(f'Total cost = ${mainPrice+sidePrice+drinkPrice+ingredientsPrice}')
+         
         
     @property
-    def is_ready(self):
-        return self._is_ready
-    
     def main(self):
         return self._main
     
@@ -154,4 +202,35 @@ class Order:
         print('Setting drink Price')
         self._dirnkPrice = drinkPrice
         
+    @property
+    def status(self):
+        return self._status
     
+    def setStatus(self, status):
+        self._status = status
+        
+    @property
+    def orderID(self):
+        return self._orderID
+        
+    def __str__(self):
+        output = ''
+        output += f'{self._main} with\n'
+        output += f'{self._mainBunNo} {self._mainBun} buns and\n'
+        output += f'{self._mainPattyNo} {self._mainPatty} patties.\n'
+        if any(self._ingredients) is True:
+            output += 'Extra ingredients: |'
+            for i in self._ingredients:
+                output += f'   {i}   |'
+        output += '\n'
+        if any(self._sides) is True:
+            output += 'Sides: |'
+            for s in self._sides:
+                output += f'   {s}   |'
+        output += '\n'
+        if any(self._drinks) is True:
+            output += 'Drinks: |'
+            for d in self._drinks:
+                output += f'   {d}   |'
+        output += '\n'
+        return output

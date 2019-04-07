@@ -13,9 +13,11 @@ from Sides import Sides
 from Staff import Staff
 
 #Customer Ordering main
+print('Ordering ...')
 Main = Main()
 Sides = Sides()
 Ingredient = Ingredient()
+Staff = Staff()
 
 
 main = Main.name[0]
@@ -83,5 +85,17 @@ print(drinks, drinkPrice)
 drinks.remove(Sides.drinks[0])
 drinkPrice -= Sides.drinkPrice[0]
 
+print('Sending in order ...\n')
 customerOrder = Order(main, mainBun, mainBunNo, mainPatty, mainPattyNo, mainPrice, ingredient,
                       ingredientPrice, sides, drinks, sidePrice, drinkPrice)
+
+Staff.checkStatus(customerOrder.orderID)
+
+Staff.addOrder(customerOrder)
+
+Staff.viewOrder
+
+Staff.setStatus(0)
+
+Staff.checkStatus(customerOrder.orderID)
+

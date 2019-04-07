@@ -4,21 +4,16 @@
 Created on Thu Apr  4 16:41:40 2019
 
 @author: z5075710, The Minh Tran
-         z5177881
 """
 #Need to validate using isinstance(x, int)/(y, str)
-
+from Order import Order
 class Staff:
-    def __init__(self, username, password):
+    def __init__(self, username = None, password = None):
         self._order = []
+        self._orderReady = []
         self._username = username
         self._password = password
-     
-    def authenticate(self, username, password):
-        if (self._username == username and self._password = password):
-            return True
-        else:
-            return False
+        
         
     #Functions involving username
     @property
@@ -48,9 +43,9 @@ class Staff:
         print('Getting order list') #For testing purposes, omment this line of code out once done
         return self._order
     
-    @order.setter
+    
     def addOrder(self, order):
-        print('Adding order') #For testing purposes, omment this line of code out once done
+        print('Adding order ... \n') #For testing purposes, omment this line of code out once done
         self._order.append(order)
         
     @order.deleter
@@ -60,3 +55,30 @@ class Staff:
             self._order.remove(order)
         else:
             print('No order exists')
+    
+    @property
+    def viewOrder(self):
+        print(self._order[0])
+        
+    def viewAllOrder(self):
+        for o in self._order:
+            print(o)
+        
+    def setStatus(self, orderIndex, status = 'Ready'):
+        print('Setting status ...\n')
+        self._order[orderIndex].setStatus(status)
+        self._orderReady.append(self._order[orderIndex])
+        self._order.remove(self._order[orderIndex])
+        
+    def checkStatus(self, orderID):
+        print('Checking status ... \n')
+        if any(self._orderReady) is True:
+            for o in range(0,len(self._orderReady)):
+                if orderID is self._orderReady[o].orderID:
+                    print(f'{self._orderReady[o].status}')
+                else:
+                        print('Not ready')
+        else:
+            print('Not ready')
+        
+        

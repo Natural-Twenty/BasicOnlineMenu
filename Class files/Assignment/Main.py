@@ -8,7 +8,7 @@ Created on Fri Apr  5 15:10:23 2019
 
 class Main:
     def __init__(self, name = ['burger', 'wrap'],
-                 bun_type = ['sesame', 'muffin'],
+                 bun_type = ['muffin', 'sesame'],
                  patty_type = ['chicken', 'vegetarian', 'beef'],
                  price = [2, 4, 0.5, 1]):
         self._name = name
@@ -31,6 +31,8 @@ class Main:
     @property
     def price(self):
         return self._price
+        
+
         
         #Implemented for customer orders userstory. Does not include inventory implementation
     
