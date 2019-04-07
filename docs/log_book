@@ -1,0 +1,18 @@
+Date       | Task     
+5/3/19      Regular lab meeting: our group decided to assigned "Milestone 1". Every group member should finish
+            one part of the User-Story this week. Minh will write epic stories and user stories for "Customer 
+            - Online Orders". Haoyang will write epic stories and user stories for "Staff - Service Orders". 
+            Peiwen will write epic and user stories for "Staff - Maintain Inventory". Then combine the each 
+            epic stories into one main. 
+26/3/19     Regular lab meeting: group members shared their ideas about class diagram for "Milestone 2". Some
+            significant classes with clear objects and methods were defined, including order system, customer
+            and so on. The next thing our group did was to determine and show the relationship between classes.
+            Focusing on the implementation of the restaurant order system and making detailed plan of how to
+            accomplish each part would be the task of this week.
+2/4/19      Regular lab meeting: the feedback of class diagram was given by tutor this week. We missed the relationship
+            between order and food which should be aggregation. Customers should be also added the burger
+            list so that they can choose different ingredient that satisfies their favour. The most important
+            task is that the software system needs to be built and the test cases should be accomplished. We
+            are required to make sure that customers are able to place their order and staff can process the 
+            order. The implementation of different classes which includes customer, staff, order, order system,
+            food, ingredient, sides and drinks assigned to each member separetely.
