@@ -29,6 +29,20 @@ class OrderSystem():
 	def inventory(self, orderList):
 		self._inventory = inventory
 
+	def add_customer(self, customer):
+		self._customerList.append(customer)
+
+	def delete_customer(self, customer):
+		self._customerList.remove(customer)
+
+	def add_order(self, order):
+		self._orderList.append(order)
+
+	def delete_order(self, order):
+		self._orderList.remove(order)
+
+	
+
 
 	
 	
