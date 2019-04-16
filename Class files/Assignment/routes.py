@@ -1,13 +1,54 @@
 from flask import render_template, request, redirect, url_for, abort
-from server import app
+from server import app, system
 from datetime import datetime
-
 
 
 
 @app.route('/', methods=["GET", "POST"])
 def index():
+    return redirect(url_for('login'))
+
+@app.route('/login', methods=["GET", "POST"])
+def login():
+    #receive and store into session
+    if request.method == 'POST' and request.form.get('username&password') == 'True':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        
+        #authenticate the username and password
+        success = False
+        f = open('user.txt','r')
+        lines = f.readlines()
+        for user in lines:
+            up = user.split()
+            r_username = up[0]
+            r_password = up[1]
+            if username != r_username: continue
+            else:
+                if r_password == password:
+                    success = True
+        f.close()
+        if success == False:
+            error={}
+            error['auth'] = 'Invalid Username or Password'
+            return render_template('login.html', error = error)
+        else:
+            return render_template('home.html')
     return render_template('login.html')
+
+@app.route('/register',methods=["GET", "POST"])
+def register():
+    if request.method == 'POST' and request.form.get('register') == 'True':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        f = open('user.txt','a+')
+        towrite = username + ' ' + password + '\n'
+        f.write(towrite)
+        f.close()
+        return render_template('home.html')
+    else:
+        return render_template('register.html')
+
 
 
 
