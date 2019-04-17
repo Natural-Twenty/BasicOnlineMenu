@@ -1,0 +1,24 @@
+(% extends 'base.html' %)
+(% content block %)
+<p>
+    In a hurry? Don't worry. You may select either base burger or base wrap and
+    we'll start making a burger or wrap in no time. A base burger or base wrap already
+    has its contents pre-determined so you don't have to spend time customising.
+    Otherwise, select customise to start ordering.
+</p>
+<form method="post">
+    <div>
+        <input type="radio" name="pre_order" value="base_burger">
+        <label>Base burger</label> <br>
+    </div>
+    <div>
+        <input type="radio" name="pre_order" value="base_wrap">
+        <label>Base wrap</label> <br>
+    </div>
+    <div>
+        <input type="radio" name="pre_order" value="customise">
+        <label>Customise</label> <br>
+    </div>
+    <button type="submit" value="Next">Submit</button>
+</form>
+{% endblock %}
