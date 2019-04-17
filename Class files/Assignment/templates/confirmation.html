@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% content block %}
+<h3>Here is your order. Make your final check before payment</h3>
+<div>
+    <p> You have ordered the following.
+        {{main}} with {{main_bun_no}} {{main_bun_type}} buns. <br>
+        {% if ingredients %}
+                Extra ingredients:
+            <ul>
+            {% for item in ingredient %}
+                <li>item</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        {% if sides %}
+            Sides:
+            <ul>
+            {% for item in sides %}
+                <li>item</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        {% if drinks %}
+            Drinks:
+            <ul>
+            {% for item in drinks %}
+                <li>item</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        Total price: {{price}} <br>
+    </p>
+    <label>Please click to proceed to payment:</label>
+    <button type="submit" name="next" value="next">Pay now</button> <br>
+    <br>
+    <br>
+    <label>If you wish to re-do your order, click below.</label>
+    <h4>Warning, clicking below will cancel your order and, you will have to start from the beginning</h4>
+    <button type="submit" name="previous" value="previous">Reset order</button>
+</div>
+{% endblock %}
