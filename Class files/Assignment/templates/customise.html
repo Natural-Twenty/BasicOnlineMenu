@@ -18,15 +18,15 @@ table, th, td {
     <div>
         <label>Choose a main:</label>
         <select name="main">
-            <option value="burger">Burger</option>
-            <option value="wrap">Wrap</option>
+            <option value="burger">Burger - $Price</option>
+            <option value="wrap">Wrap - $Price</option>
         </select>
     </div>
     <div>
         <label>Select your type of bun: </label>
         <select name="main_bun_type">
-            <option value="sesame">Sesame</option>
-            <option value="muffin">muffin</option>
+            <option value="sesame">Sesame - $Price per bun</option>
+            <option value="muffin">muffin - $Price per bun</option>
         </select>
     </div>
     <div>
@@ -293,7 +293,7 @@ table, th, td {
         <li><a href="#Drinks"> Drinks </a></li>
     </ul>
     <label>You can check price by clicking:</label>
-    <button type="submit" name="checkPrice">Check price</button><br>
+    <button type="submit" name="checkPrice" value="checkPrice">Check price</button>
     {% if out_of_stock %}
         <p>Sorry, we do not have enough of the following:</p><br>
         <ul>
@@ -303,10 +303,9 @@ table, th, td {
         </ul>
     {% elif price %}
         <p>Total price: {{price}}</p>
-        <p>Once you are done checking your order. Click submit to proceed to confirmation.</p>
-        <button type="submit" name="submit">Submit</button>
+        <p>Once you are done checking your order. Click submit to proceed to payment.</p>
+        <button type="submit" name="submit" value="submit">Pay now</button><br>
     {% endif %}
-
 </form>
 
 {% endblock %}

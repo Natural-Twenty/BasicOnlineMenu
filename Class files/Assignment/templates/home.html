@@ -1,10 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
+
 <h1>Welcome to our store.</h1> 
 <p>We offer you the freedom to create your very own custom burger. </p>
-<p>Click below to place an order an order
-    <a href="" Order Now </a>
+<p>Click below to place an order an order <br>
+    <a href="customise.html"> Order now </a> <br>
 </p>
+<form method="post">
+    <p>If you already have an order, enter your order ID below to check the status of that order.</p>
+    <input type="number" name="order_ID" value="order_ID" placeholder="Enter your order ID" required>
+    <button type="submit" name="checkID" value="checkID">Check status</button>
+</form>
+
+{% if message %}
+    <font size="3" color="red">Error: Incorrect order ID. Please check your order ID</font>
+{% endif %}
 
 {% endblock %}
 
