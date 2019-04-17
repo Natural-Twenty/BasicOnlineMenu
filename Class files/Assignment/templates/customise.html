@@ -294,10 +294,21 @@ table, th, td {
         <li><a href="#SidesAndDrinks"> Sides </a></li>
         <li><a href="#Drinks"> Drinks </a></li>
     </ul>
-    <p>Once you are done checking your order. Click submit to proceed to confirmation.</p>
-    <button type="submit">Submit</button>
+    <label>You can check price by clicking:</label>
+    <button type="submit" name="checkPrice">Check price</button><br>
+    {% if out_of_stock %}
+        <p>Sorry, we do not have enough of the following:</p><br>
+        <ul>
+            {% for item in out_of_stock}
+                <li>{{item}}</li>       
+            {% endfor %}
+        </ul>
+    {% elif price %}
+        <p>Total price: {{price}}</p>
+        <p>Once you are done checking your order. Click submit to proceed to confirmation.</p>
+        <button type="submit" name="submit">Submit</button>
+    {% endif %}
+
 </form>
-
-
 
 {% endblock %}
