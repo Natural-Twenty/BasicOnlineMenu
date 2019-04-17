@@ -1,7 +1,11 @@
 from flask import render_template, request, redirect, url_for, abort
 from server import app, system
-from datetime import datetime
-
+from src.location import Location
+from src.customer import Customer
+from src.order import Order
+from src.sides import Sides
+from src.main import Main
+from src.ingredient import Ingredient
 
 
 @app.route('/', methods=["GET", "POST"])
@@ -49,7 +53,33 @@ def register():
     else:
         return render_template('register.html')
 
+'''
+Search for food
+'''
+@app.route('/login/menu', methods=["GET", "POST"])
+def food():
 
+    if request.method == 'POST':
+        make  = request.form.get('make')
+
+        if make == '':
+            make = None
+
+        food = system.search_food(make)
+        return render_template('cars.html', food = food)
+    
+    return render_template('cars.html', food = system.food
+'''
+Make an order
+'''
+@app.route('/login/menu/order', methods=["GET", "POST"])
+def menu():
+    main = system.get_main()
+    ingredient = system.get_ingredient()
+    sides = system.get_sides()
+
+    if request.method == "POST":
+        
 
 
 
