@@ -54,35 +54,30 @@ def register():
         return render_template('register.html')
 
 '''
-Search for food
+Display the menu page
 '''
 @app.route('/login/menu', methods=["GET", "POST"])
-def food():
-
-    if request.method == 'POST':
-        make  = request.form.get('make')
-
-        if make == '':
-            make = None
-
-        food = system.search_food(make)
-        return render_template('cars.html', food = food)
-    
-    return render_template('cars.html', food = system.food
+def menu():
+    mainList = ['burger', 'wrap', 'muffin', 'sesame', 'chicken', 'vegetarian', 'beef']
+    sidesList = ['3 pack nuggets', '6 pack nuggets', '0.2 kg small fries', '0.4 kg medium  fries', '0.6 kg large fries']
+    drinksList = ['375mL can of coke', '600mL bottle of water']
+    ingredientList = ['Tomato', 'Lettuce', 'Tomato sauce', 'cheddar cheese', 'swiss cheese']
+    if request.method == 'GET':
+        return render_template('menu.html')
+    else   
+        return render_template('menu.html', main = mainList, sides = sidesList, drinks = drinksList, ingredient = ingredientList)
 '''
 Make an order
 '''
 @app.route('/login/menu/order', methods=["GET", "POST"])
-def menu():
-    main = system.get_main()
-    ingredient = system.get_ingredient()
-    sides = system.get_sides()
-
+def order():
     if request.method == "POST":
-        
-
-
-
+        if "confirm order" in request.form:
+            order = system.make_order(customer, car, request.form.getList('mainList', 'sidesList', 'drinksList', 'ingredientList'))
+            orderData = dict(order = order)
+        return render_template('confirmation.html', request.form.getList('mainList', 'sidesList', 'drinksList', 'ingredientList'), data = orderData)
+    else 
+        return render_template('menu.html')
 # from src.location import Location
 # # from src.error import BookingError, LoginError
 # from src.customer import Customer
