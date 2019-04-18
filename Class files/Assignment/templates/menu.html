@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+
+<body>
+    <form method = "POST">
+        <p>Menu</p>
+        {% for item in main%}
+            <input type="checkbox" name="mainList" value="{{item}}">{{item}}</input><br>
+        {%end for%}
+        {% for item in sides%}
+            <input type="checkbox" name="sidesList" value="{{item}}">{{item}}</input><br>
+        {%end for%}
+        {% for item in drinks%}
+            <input type="checkbox" name="drinksList" value="{{item}}">{{item}}</input><br>
+        {%end for%}
+        {% for item in ingredient%}
+            <input type="checkbox" name="ingredientList" value="{{item}}">{{item}}</input><br>
+        {%end for%}
+        <button type="submit">submit order</button>
+    </form>
+
+</body>
+</html>
+    
