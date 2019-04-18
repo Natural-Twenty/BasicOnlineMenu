@@ -1,0 +1,139 @@
+<!-- To do:
++Complete the values field
+-- Description of this file --
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title><font face="verdana" color="green">GourmetBurgers Inventory Management</font></title>
+        <h1><font face="verdana" color="green">GourmetBurgers Inventory Management</font></h1>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <h3><font size="3" color="blue">Instructions</font></h3>
+        <p>
+            Check the boxes for the items you wish to restock, then input the value you are restocking by.
+        </p>
+        <h3>
+            Be sure yo double check your inputs. <br>
+            Only enter integers above 0.
+        </h3>
+        <table>
+            <tr>
+                <th><h3>Item</h3></th>
+                <th><h3>Quantity</h3></th>
+                <th><h3>Unit</h3></th>
+                <th><h3>Restock</h3></th>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="inventory" value="">Sesame burger buns</td>
+                <td>{{sesame_burger_quan}}</td>
+                <td>Units</td>
+                <td><input type="number" name="sesame_burger_restock" placeholder="Enter integer above zero"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="inventory" value="">Sesame wrap buns</td>
+                <td>{{sesame_wrap_quan}}</td>
+                <td>Units</td>
+                <td><input type="number" name="sesame_wrap_restock" placeholder="Enter integer above zero"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="inventory" value="">Muffin burger buns</td>
+                <td>{{muffin_burger_quan}}</td>
+                <td>Units</td>
+                <td><input type="number" name="muffin_burger_restock" placeholder="Enter integer above zero"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="inventory" value="">Muffin wrap buns</td>
+                <td>{{muffin_wrap_quan}}</td>
+                <td>Units</td>
+                <td><input type="number" name="muffin_wrap_restock" placeholder="Enter integer above zero"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="inventory" value="">Chicken patties</td>
+                <td>{{chicken_patty_quan}}</td>
+                <td>Kg</td>
+                <td><input type="number" name="chicken_patty_restock" placeholder="Enter integer above zero"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="inventory" value="">Vegetarian patties</td>
+                <td>{{vegetarian_patty_quan}}</td>
+                <td>Kg</td>
+                <td><input type="number" name="vegetarian_patty_restock" placeholder="Enter integer above zero"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="inventory" value="">Beef patties</td>
+                <td>{{beef_patty_quan}}</td>
+                <td>Kg</td>
+                <td><input type="number" name="beef_patty_restock" placeholder="Enter integer above zero"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="inventory" value="">Tomato</td>
+                <td>{{tomato_quan}}</td>
+                <td>Kg</td>
+                <td><input type="number" name="tomato_restock" placeholder="Enter integer above zero"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="inventory" value="">Lettuce</td>
+                <td>{{lettuce_quan}}</td>
+                <td>Kg</td>
+                <td><input type="number" name="lettuce_restock" placeholder="Enter integer above zero"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="inventory" value="">Tomato Sauce</td>
+                <td>{{tomato_sauce_quan}}</td>
+                <td>mL</td>
+                <td><input type="number" name="tomato_sauce_restock" placeholder="Enter integer above zero"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="inventory" value="">Cheddar cheese</td>
+                <td>{{cheddar_cheese_quan}}</td>
+                <td>Kg</td>
+                <td><input type="number" name="cheddar_cheese_restock" placeholder="Enter integer above zero"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="inventory" value="">Swiss cheese</td>
+                <td>{{swiss_cheese_quan}}</td>
+                <td>Kg</td>
+                <td><input type="number" name="swiss_cheese_restock" placeholder="Enter integer above zero"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="inventory" value="">Nuggets</td>
+                <td>{{nuggets_quan}}</td>
+                <td>Pieces</td>
+                <td><input type="number" name="nuggets_restock" placeholder="Enter integer above zero"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="inventory" value="">Fries</td>
+                <td>{{fries_quan}}</td>
+                <td>Kg</td>
+                <td><input type="number" name="fries_restock" placeholder="Enter integer above zero"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="inventory" value="">Ice cream</td>
+                <td>{{ice_cream_quan}}</td>
+                <td>Kg</td>
+                <td><input type="number" name="ice_cream_restock" placeholder="Enter integer above zero"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="inventory" value="">Chocolate sauce</td>
+                <td>{{chocolate_sauce_quan}}</td>
+                <td>mL</td>
+                <td><input type="number" name="chocolate_sauce_restock" placeholder="Enter integer above zero"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="inventory" value="">Strawberry sauce</td>
+                <td>{{strawberry_sauce_quan}}</td>
+                <td>mL</td>
+                <td><input type="number" name="strawberry_sauce_restock" placeholder="Enter integer above zero"></td>
+            </tr>
+        </table>
+        <button type="submit" name="submit" value="restock">Submit</button>
+    </body>
+</html>

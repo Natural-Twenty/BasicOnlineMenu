@@ -1,3 +1,15 @@
+<!-- To do (if time allows):
++ Add description to the base burger and base wrap
++ Put in prices
+-- Description of this file --
+Provides a user with a choice between base burger, base wrap or customise an order.
+Selecting base burger or base wrap and submitting will reveal the option to pay.
+Upon payment, redirect to 'confirmation.html' page.
+Customer may select another option and sumbit to change their option.
+Submitting with 'customise' option will redirect to 'customise.html' page.
+-->
+
+
 (% extends 'base.html' %)
 (% content block %)
 <p>
@@ -9,16 +21,23 @@
 <form method="post">
     <div>
         <input type="radio" name="pre_order" value="base_burger">
-        <label>Base burger</label> <br>
+        <label>Base burger - $Price goes here</label> <br>
     </div>
     <div>
         <input type="radio" name="pre_order" value="base_wrap">
-        <label>Base wrap</label> <br>
+        <label>Base wrap - $Price goes here</label> <br>
     </div>
+    {% if base %}
+        <p>You have selected: {{base}}. Click 'Pay Now' to order. <br>
+            Or choose another option and resumbit if you have changed your mind.
+        </p>
+        <button type="submit" value="pay">Pay Now</button>
+    {% endif %}
     <div>
         <input type="radio" name="pre_order" value="customise">
         <label>Customise</label> <br>
     </div>
     <button type="submit" value="Next">Submit</button>
 </form>
+
 {% endblock %}
