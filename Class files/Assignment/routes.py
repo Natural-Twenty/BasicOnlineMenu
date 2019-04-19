@@ -1,11 +1,10 @@
 from flask import render_template, request, redirect, url_for, abort
 from server import app, system
-from src.location import Location
-from src.customer import Customer
-from src.order import Order
-from src.sides import Sides
-from src.main import Main
-from src.ingredient import Ingredient
+from src.Customer import Customer
+from src.Order import Order
+from src.Sides import Sides
+from src.Main import Main
+from src.Ingredient import Ingredient
 
 
 @app.route('/', methods=["GET", "POST"])
@@ -64,7 +63,7 @@ def menu():
     ingredientList = ['Tomato', 'Lettuce', 'Tomato sauce', 'cheddar cheese', 'swiss cheese']
     if request.method == 'GET':
         return render_template('menu.html')
-    else   
+    else:
         return render_template('menu.html', main = mainList, sides = sidesList, drinks = drinksList, ingredient = ingredientList)
 '''
 Make an order
@@ -76,35 +75,35 @@ def order():
             order = system.make_order(customer, car, request.form.getList('mainList', 'sidesList', 'drinksList', 'ingredientList'))
             orderData = dict(order = order)
         return render_template('confirmation.html', request.form.getList('mainList', 'sidesList', 'drinksList', 'ingredientList'), data = orderData)
-    else 
+    else:
         return render_template('menu.html')
-		
+        
 '''
 Home page
 May have to use return redirect(url_for('')) instead of render template
 '''
 @app.route('/home', methods=['POST', 'GET'])
 def home():
-	if request.method=="POST":
-		orderID = int(request.form.get('orderID')
-		if orderID < 0:
-			message = "error"
-			return render_template('home.html', message=message)
-		orders = Staff.order
-		for i in range(0,len(orders)):
-			if orderID == orders[i].orderID:
-				main = orders[i].main
-				main_bun_no = orders[i].main_bun_no
-				main_bun_type = orders[i].main_bun_type
-				ingredient = orders[i].ingredients
-				sides = orders[i].sides
-				drinks = orders[i].drinks
-				price = orders[i].mainPrice + orders[i].sidePrice + orders[i].ingredientsPrice + orders[i].drinkPrice
-				status = orders[i].status				
-				return render_template('StatusPage.html', orderID=orderID, main=main, main_bun_no=main_bun_no, main_bun_type=main_bun_type,
-										ingredient=ingredient, sides=sides, drinks=drinks, price=price, status=status)
-		message = 'error'
-		return render_template('home.html', message=message)
+    if request.method=="POST":
+        orderID = int(request.form.get('orderID'))
+        if orderID < 0:
+            message = "error"
+            return render_template('home.html', message=message)
+        orders = Staff.order
+        for i in range(0,len(orders)):
+            if orderID == orders[i].orderID:
+                main = orders[i].main
+                main_bun_no = orders[i].main_bun_no
+                main_bun_type = orders[i].main_bun_type
+                ingredient = orders[i].ingredients
+                sides = orders[i].sides
+                drinks = orders[i].drinks
+                price = orders[i].mainPrice + orders[i].sidePrice + orders[i].ingredientsPrice + orders[i].drinkPrice
+                status = orders[i].status                
+                return render_template('StatusPage.html', orderID=orderID, main=main, main_bun_no=main_bun_no, main_bun_type=main_bun_type,
+                                        ingredient=ingredient, sides=sides, drinks=drinks, price=price, status=status)
+        message = 'error'
+        return render_template('home.html', message=message)
 
 
 # from src.location import Location

@@ -6,8 +6,8 @@ Created on Fri Apr  5 16:43:40 2019
 @author: z5075710
 """
 import random
-from Inventory import Inventory
-from Main import Main
+from src.Inventory import Inventory
+from src.Main import Main
 class Order:
     def __init__(self, main, mainBun, mainBunNo, mainPatty, mainPattyNo, mainPrice, 
                  ingredients = [], ingredientsPrice= 0,
