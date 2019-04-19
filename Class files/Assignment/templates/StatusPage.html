@@ -4,7 +4,7 @@
     Here is your order. Thank you for ordering at GourmetBurgers. <br>
     We hope you enjoy your creation.
 </h3>
-<h4>Your Order ID: {{order_ID}}</h4>
+<h4>Your Order ID: {{orderID}}</h4>
 <div>
     <p> You have ordered the following.
         {{main}} with {{main_bun_no}} {{main_bun_type}} buns. <br>
@@ -12,7 +12,7 @@
                 Extra ingredients:
             <ul>
             {% for item in ingredient %}
-                <li>item</li>
+                <li>{{item}}</li>
             {% endfor %}
             </ul>
         {% endif %}
@@ -20,7 +20,7 @@
             Sides:
             <ul>
             {% for item in sides %}
-                <li>item</li>
+                <li>{{item}}</li>
             {% endfor %}
             </ul>
         {% endif %}
@@ -28,11 +28,11 @@
             Drinks:
             <ul>
             {% for item in drinks %}
-                <li>item</li>
+                <li>{{item}}</li>
             {% endfor %}
             </ul>
         {% endif %}
-        Total price: {{price}} <br>
+        Total price: ${{price}} <br>
     </p>
     <label>Click to refresh the page and see if your order is ready:</label>
     <button type="submit" name="next" value="next">Refresh page</button> <br>

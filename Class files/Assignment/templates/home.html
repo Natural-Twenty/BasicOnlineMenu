@@ -4,12 +4,12 @@
 <h1>Welcome to our store.</h1> 
 <p>We offer you the freedom to create your very own custom burger. </p>
 <p>Click below to place an order an order <br>
-    <a href="customise.html"> Order now </a> <br>
+    <a href="pre-order.html"> Order now </a> <br>
 </p>
 <form method="post">
     <p>If you already have an order, enter your order ID below to check the status of that order.</p>
-    <input type="number" name="order_ID" placeholder="Enter your order ID" required>
-    <button type="submit" name="checkID">Check status</button>
+    <input type="number" name="orderID" placeholder="Enter your order ID" required>
+    <button type="submit" name="checkID" value="checkID">Check status</button>
 </form>
 
 {% if message %}
