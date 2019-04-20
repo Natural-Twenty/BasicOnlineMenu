@@ -1,17 +1,18 @@
 {% extends 'base.html' %}
 {% content block %}
 <h3>
-    Here is your order. Thank you for ordering at GourmetBurgers. <br>
-    We hope you enjoy your creation.
+    Here is your order. Once you have reviewed your order, <br>
+    please click on 'Pay now'.
 </h3>
-<h4>Your Order ID: {{order_ID}}</h4>
 <div>
+<form>
     <p> You have ordered the following.
-        {{main}} with {{main_bun_no}} {{main_bun_type}} buns. <br>
+        {{main}} with {{mainBunNo}} {{mainBun}} buns and <br>
+        {{mainPattyNo}} {{mainPatty}}s. <br>
         {% if ingredients %}
                 Extra ingredients:
             <ul>
-            {% for item in ingredient %}
+            {% for item in ingredients %}
                 <li>item</li>
             {% endfor %}
             </ul>
@@ -32,11 +33,12 @@
             {% endfor %}
             </ul>
         {% endif %}
-        Total price: {{price}} <br>
+        Total price: <input type="number" name="price" value="{{ price }}" readonly> <br>
     </p>
-    <label>Click to refresh the page and see if your order is ready:</label>
-    <button type="submit" name="next" value="next">Refresh page</button> <br>
-    <h4>Your order status: <font size="3" color="blue">{{status}}</font></h4>
-
+    <label>Click to pay:</label>
+    <button type="submit" name="pay" value="pay">Pay Now</button> <br>
+</form>
+<label>Click below to re-do your order</label>
+<p><a href="customise.html">Go back</a></p>
 </div>
 {% endblock %}
