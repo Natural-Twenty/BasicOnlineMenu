@@ -53,30 +53,22 @@ def register():
         return render_template('register.html')
 
 '''
-Display the menu page
-'''
-@app.route('/login/menu', methods=["GET", "POST"])
-def menu():
-    mainList = ['burger', 'wrap', 'muffin', 'sesame', 'chicken', 'vegetarian', 'beef']
-    sidesList = ['3 pack nuggets', '6 pack nuggets', '0.2 kg small fries', '0.4 kg medium  fries', '0.6 kg large fries']
-    drinksList = ['375mL can of coke', '600mL bottle of water']
-    ingredientList = ['Tomato', 'Lettuce', 'Tomato sauce', 'cheddar cheese', 'swiss cheese']
-    if request.method == 'GET':
-        return render_template('menu.html')
-    else:
-        return render_template('menu.html', main = mainList, sides = sidesList, drinks = drinksList, ingredient = ingredientList)
-'''
 Make an order
 '''
 @app.route('/login/menu/order', methods=["GET", "POST"])
 def order():
     if request.method == "POST":
-        if "confirm order" in request.form:
-            order = system.make_order(customer, car, request.form.getList('mainList', 'sidesList', 'drinksList', 'ingredientList'))
+        food = orderList(request.form.getList)
+        food_quantity = orderForm(request.form)
+        if "check price" in request.form:
+            checkData = dict(fee = system.check_fee(form.main, form.sides, form.drinks, form.ingredient, form.bun_number, form.nuggest_number1, form.nuggest_number2, form.fries_number1, form.fries_number2, form.fries_number3, form.sundae_number1, form.sundae_number2, form.sundae_number3, form.sundae_number4, form.sundae_number5, form.sundae_number6, form.drinks_number1, form.drinks_number2, form.drinks_number3, form.drinks_number4, form.drinks_number5, form.form.drinks_number6)
+            return render_template('customise.html', orderList = request.form.getList, orderForm = request.form, data = checkData)
+        if "pay now" in request.form:
+            order = system.orderList(customer, form.main, form.sides, form.drinks, form.ingredient, form.bun_number, form.nuggest_number1, form.nuggest_number2, form.fries_number1, form.fries_number2, form.fries_number3, form.sundae_number1, form.sundae_number2, form.sundae_number3, form.sundae_number4, form.sundae_number5, form.sundae_number6, form.drinks_number1, form.drinks_number2, form.drinks_number3, form.drinks_number4, form.drinks_number5, form.form.drinks_number6)
             orderData = dict(order = order)
-        return render_template('confirmation.html', request.form.getList('mainList', 'sidesList', 'drinksList', 'ingredientList'), data = orderData)
-    else:
-        return render_template('menu.html')
+            return render_template('confimation.html', data = orderData)
+        return render_template('custoise.html', form={})
+
         
 '''
 Home page
