@@ -134,15 +134,32 @@ def home():
     for ele in system.customerList:
         if session['username'] == ele.username:
             user = ele
-            return render_template('home.html', user = user, abc = session['username'])
+            if session['username'] == 'admin':
+                admin = 'True'
+
+            return render_template('home.html', user = user, admin = admin)
 
 
 
 
     return render_template('home.html')
 
+@app.route('/inventory',methods=["GET", "POST"])
+def inventory():
+    if request.method == 'POST':
+        print(dict(request.form))
+        for ele in request.form:
+            if request.form[ele] != '' and ele != 'submit':
+                print("yes")
+                print(request.form[ele])
+                name = str(ele)
+                print(name)
+                for ele2 in system.inventory:
+                    if ele2.name == name:
+                        tmp = ele2.quantity+int(request.form[ele])
+                        ele2.quantity = tmp
 
-
+    return render_template('inventory.html', inve = system.inventory)
 
 '''
 Display the menu page

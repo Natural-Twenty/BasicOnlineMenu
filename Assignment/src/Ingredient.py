@@ -32,6 +32,10 @@ class Ingredient():
     def unitPrice(self):
         return self._unitPrice
     
+    @quantity.setter
+    def quantity(self, quantity):
+        self._quantity = quantity
+
 
 # class Ingredient:
 #     def __init__(self, name = None, 
