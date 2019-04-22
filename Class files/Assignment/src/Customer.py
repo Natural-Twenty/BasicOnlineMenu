@@ -1,4 +1,3 @@
-
 class Customer():
 	def __init__(self, name, email, username, password, orders):
 		self._name = name
@@ -52,6 +51,3 @@ class Customer():
 
 	def delete_order(self, order):
 		self._orders.remove(order)
-
-	
-
