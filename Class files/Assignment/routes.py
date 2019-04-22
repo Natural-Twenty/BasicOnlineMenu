@@ -58,16 +58,22 @@ Make an order
 @app.route('/login/menu/order', methods=["GET", "POST"])
 def order():
     if request.method == "POST":
-        food = orderList(request.form.getList)
-        food_quantity = orderForm(request.form)
+        main = request.form.get('bun_type', 'patty_type')
+        main_quan = int(request.form.get('bun_no', 'patty_no'))
+        ingredient = request.form.get('ingredient')
+        sides = request.form.get('Sides')
+        sides_quan = int(request.form.get('repeat0', 'repeat1','repeat2', 'repeat3', 'repeat4', 'repeat5', 'repeat6', 'repeat7','repeat8', 'repeat9', 'repeat10'))
+        drinks = request.form.get('Drinks')
+        drinks_quan = int(request.form.get('repeat11', 'repeat12','repeat13', 'repeat14', 'repeat15'))
+
         if "check price" in request.form:
-            checkData = dict(fee = system.check_fee(form.main, form.sides, form.drinks, form.ingredient, form.bun_number, form.nuggest_number1, form.nuggest_number2, form.fries_number1, form.fries_number2, form.fries_number3, form.sundae_number1, form.sundae_number2, form.sundae_number3, form.sundae_number4, form.sundae_number5, form.sundae_number6, form.drinks_number1, form.drinks_number2, form.drinks_number3, form.drinks_number4, form.drinks_number5, form.form.drinks_number6)
-            return render_template('customise.html', orderList = request.form.getList, orderForm = request.form, data = checkData)
+            checkData = dict(fee = system.check_fee(main, main_quan, ingredient, sides, sides_quan, drinks, drinks_quan)
+            return render_template('customise.html', main = main, main_quan = main_quan, ingredient = ingredient, sides = sides, sides_quan = sides_quan, drinks = drinks, drinks_quan = drinks_quan, data = checkData)
         if "pay now" in request.form:
-            order = system.orderList(customer, form.main, form.sides, form.drinks, form.ingredient, form.bun_number, form.nuggest_number1, form.nuggest_number2, form.fries_number1, form.fries_number2, form.fries_number3, form.sundae_number1, form.sundae_number2, form.sundae_number3, form.sundae_number4, form.sundae_number5, form.sundae_number6, form.drinks_number1, form.drinks_number2, form.drinks_number3, form.drinks_number4, form.drinks_number5, form.form.drinks_number6)
+            order = system.orderList(customer, main, main_quan, ingredient, sides, sides_quan, drinks, drinks_quan)
             orderData = dict(order = order)
             return render_template('confimation.html', data = orderData)
-        return render_template('custoise.html', form={})
+        return render_template('customise.html', form={})
 
         
 '''
@@ -97,6 +103,28 @@ def home():
         message = 'error'
         return render_template('home.html', message=message)
 
+'''
+Staff page
+'''
+@app.route('/login/staff', methods=['POST', 'GET'])
+def stage():
+    if request.method=="POST:
+        if "Complete" in request.form:
+            message = "Order complete"
+            return render_template('viewOrders.html', message=message)
+        if "checkOrders" in reqest.form:
+            return redirect(url_for('StatusPage'))
+
+'''
+Refresh inventory
+'''
+@app.route('/login/staff/inventory', methods=['POST', 'GET'])
+def refresh_inventory():
+    inventory = request.form.get('inventory')
+    inventory_quan = int(request.form.get('sesame_burger_restock', 'sesame_wrap_restock', 'muffin_burger_restock', 'muffin_wrap_restock', 'chicken_patty_restock','vegetarian_patty_restock', 'beef_patty_restock', 'tomato_restock', 'lettuce_restock', 'tomato_sauce_restock', 'cheddar_cheese_restock', 'swiss_cheese_restock', 'nuggets_restock', 'fries_restock', 'ice_cream_restock', 'chocolate_sauce_restock', 'strawberry_sauce_restock'))
+    if "Submit" in request.form:
+        return render_template('home.html')
+    return ('home.html')
 
 # from src.location import Location
 # # from src.error import BookingError, LoginError
