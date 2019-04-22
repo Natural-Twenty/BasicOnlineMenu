@@ -4,6 +4,9 @@ class OrderSystem():
 		self._orderList = orderList
 		self._inventory = inventory
 
+	def check_fee(self, customer, main, main_num, sides, sides_num, drinks, drinks_num, ingredient, ingredient_num): 
+        return main._price(main, main_num) + sides._sidePrice(sides, sides_num) + drinks._drinkPrice(drinks, drinks_num) + ingredient._price(ingredient, ingredient_num)
+
 	@property
 	def customerList(self):
 		return self._customerList
@@ -16,7 +19,7 @@ class OrderSystem():
 	@property
 	def inventory(self):
 		return self._inventory
-	
+
 	@customerList.setter
 	def customerList(self, customerList):
 		self._customerList = customerList
@@ -41,8 +44,4 @@ class OrderSystem():
 	def delete_order(self, order):
 		self._orderList.remove(order)
 
-	
-
-
-	
 	
