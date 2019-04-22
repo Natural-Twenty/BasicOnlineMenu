@@ -1,10 +1,11 @@
-from flask import render_template, request, redirect, url_for, abort
-from server import app, system
+from flask import Flask, render_template, request, redirect, url_for, abort
+from server import app, system, staff, inventory
 from src.Customer import Customer
 from src.Order import Order
 from src.Sides import Sides
 from src.Main import Main
 from src.Ingredient import Ingredient
+from src.Staff import Staff
 
 
 @app.route('/', methods=["GET", "POST"])
@@ -81,6 +82,7 @@ def order():
 '''
 Home page
 May have to use return redirect(url_for('')) instead of render template
+To be tested
 '''
 @app.route('/home', methods=['POST', 'GET'])
 def home():
@@ -89,7 +91,7 @@ def home():
         if orderID < 0:
             message = "error"
             return render_template('home.html', message=message)
-        orders = Staff.order
+        orders = staff.order
         for i in range(0,len(orders)):
             if orderID == orders[i].orderID:
                 main = orders[i].main
@@ -104,7 +106,285 @@ def home():
                                         ingredient=ingredient, sides=sides, drinks=drinks, price=price, status=status)
         message = 'error'
         return render_template('home.html', message=message)
+    return render_template('home.html')
 
+'''
+Pre-order page
+To be tested
+'''
+@app.route('/pre_order', methods=['POST', 'GET'])
+def pre_order():
+    if request.method=="POST":
+        mainObj = Main()
+        choice = request.form.get('pre_order')
+        if choice == "customise":
+            return render_template('customise.html')
+        elif choice == "base_burger":
+            main = mainObj.name[0]
+            bun_type = mainObj.bun_type[0]
+            patty_type = mainObj.patty_type[0]
+            price = mainObj.price[0]+2*mainObj.price[2]+mainObj.price[3]  
+            order = Order(main, bun_type, 2, patty_type, 1, price)
+            staff.addOrder(order)
+            status = order.status
+            orderID = order.orderID
+            return render_template('confirmation.html', main=main, bun_no=2, bun_type=bun_type,
+                                   patty_type=patty_type, patty_no=1, status=status, orderID=orderID,
+                                   price=price)
+        elif choice == "base_wrap":
+            main = mainObj.name[1]
+            bun_type = mainObj.bun_type[1]
+            patty_type = mainObj.patty_type[1]
+            price = mainObj.price[1]+2*mainObj.price[2]+mainObj.price[3]
+            order = Order(main, bun_type, 2, patty_type, 1, price)
+            staff.addOrder(order)
+            status = order.status
+            orderID = order.orderID
+            return render_template('confirmation.html', main=main, bun_no=2, bun_type=bun_type,
+                                   patty_type=patty_type, patty_no=1, status=status, orderID=orderID,
+                                   price=price)
+        else:
+            message = 'Error, you should not be getting this error.'
+            return render_template('pre_order.html', message=message)
+    return render_template('pre_order.html')
+        
+@app.route('/customise', methods=['POST', 'GET'])
+def customise():
+    MainObj = Main()
+    IngredObj = Ingredient()
+    SidesObj = Sides()
+    if request.method=="POST":
+        mainPrice = 0
+        sidePrice = 0
+        drinkPrice = 0
+        mainIndex = int(request.form.get(main))
+        main = MainObj.name[mainIndex]
+        mainPrice += mainPrice[mainIndex]
+        
+        mainBunIndex = int(request.form.get(bun_type))
+        mainBun = MainObj.bun_type[mainBunIndex]
+        mainBunNo = int(request.form.get(bun_no))
+        mainPrice += mainBunNo*MainObj.price[2]
+        
+        patty_typeIndex = int(request.form.get(patty_type))
+        mainPatty = MainObj.patty_type[patty_typeIndex]
+        mainPattyNo = int(request.form.get(patty_no))
+        mainPrice += mainPattyNo*MainObj.price[3]
+        
+        ingredientIndexList = request.form.get(Ingredient)
+        ingredients = []
+        for i in ingredientIndexList:
+            ingredients.append(IngredObj.name[int(i)])
+            mainPrice += IngredObj.price
+            
+        sidesIndexList = request.form.get(Sides)
+        sides = []
+        for i in sidesIndexList:
+            repeatx = 'repeat' + i
+            repeats = int(request.form.get(repeatx))
+            for r in range(0, repeats):
+                sides.append(SidesObj.sides[int(i)])
+                sidePrice += SidesObj.sidePrice[int(i)]
+        
+        drinksIndexList = request.form.get(Drinks)
+        drinks = []
+        for j in drinksIndexList:
+            repeaty = 'repeat' + i
+            repeat = int(request.form.get(repeaty))
+            for a in range(0,repeat):
+                drinks.append(SidesObj.drinks[int(j)])
+                drinkPrice += SidesObj.drinkPrice[int(j)]
+        
+        price = mainPrice + sidePrice + drinkPrice
+        
+        order = Order(main, mainBun, mainBunNo, mainPatty, mainPattyNo, mainPrice,
+                      ingredients, ingredientsPrice, sides, drinks, sidePrice, drinkPrice)
+        orderID = order.orderID
+        status = order.status
+        staff.addOrder(order)
+        return render_template('confirmation.html', orderID=orderID, main=main,
+                               mainBun=mainBun, mainBunNo=mainBunNo, mainPattyNo=mainPattyNo,
+                               mainPatty=mainPatty, ingredients=ingredients, sides=sides,
+                               drinks=drinks, price=price, status=status)
+                               
+    return render_template('customise.html')
+
+@app.route('/confirmation', methods=['POST', 'GET'])
+def confirmation():
+    if request.method=="POST":
+        orderID = request.form.get('orderID')
+        for i in range(0,len(staff.order)):
+            if orderID == staff.order[i].orderID:
+                status = 'Not Ready'
+                main = staff.order[i].main
+                mainBun = staff.order[i].mainBun
+                mainBunNo = staff.order[i].mainBunNo
+                mainPatty = staff.order[i].mainPatty
+                mainPattyNo = staff.order[i].mainPattyNo
+                ingredients = staff.order[i].ingredients
+                sides = staff.order[i].sides
+                drinks = staff.order[i].drinks
+                mainPrice =staff.order[i].mainPrice
+                sidePrice = staff.order[i].sidePrice
+                drinkPrice = staff.order[i].drinkPrice
+                ingredientsPrice = staff.order[i].ingredeientsPrice
+                price = mainPrice + sidePrice + drinkPrice + ingredientsPrice
+                return render_template('StatusPage.html', orderID=orderID, main=main,
+                               mainBun=mainBun, mainBunNo=mainBunNo, mainPattyNo=mainPattyNo,
+                               mainPatty=mainPatty, ingredients=ingredients, sides=sides,
+                               drinks=drinks, price=price, status=status)
+                
+                
+        for i in range(0,len(staff.order)):
+            if orderID == staff.order[i].orderID:
+                status = 'Ready'
+                main = staff.order[i].main
+                mainBun = staff.order[i].mainBun
+                mainBunNo = staff.order[i].mainBunNo
+                mainPatty = staff.order[i].mainPatty
+                mainPattyNo = staff.order[i].mainPattyNo
+                ingredients = staff.order[i].ingredients
+                sides = staff.order[i].sides
+                drinks = staff.order[i].drinks
+                mainPrice =staff.order[i].mainPrice
+                sidePrice = staff.order[i].sidePrice
+                drinkPrice = staff.order[i].drinkPrice
+                ingredientsPrice = staff.order[i].ingredientsPrice
+                price = mainPrice + sidePrice + drinkPrice + ingredientsPrice       
+                return render_template('StatusPage.html', orderID=orderID, main=main,
+                               mainBun=mainBun, mainBunNo=mainBunNo, mainPattyNo=mainPattyNo,
+                               mainPatty=mainPatty, ingredients=ingredients, sides=sides,
+                               drinks=drinks, price=price, status=status)
+    return render_template('confirmation.html')
+
+@app.route('/StatusPage', methods=['POST', 'GET'])
+def StatusPage():
+    if request.method=="POST":
+        orderID = request.form.get('orderID')
+        for i in range(0,len(staff.order)):
+            if orderID == staff.order[i].orderID:
+                status = 'Not Ready'
+                main = staff.order[i].main
+                mainBun = staff.order[i].mainBun
+                mainBunNo = staff.order[i].mainBunNo
+                mainPatty = staff.order[i].mainPatty
+                mainPattyNo = staff.order[i].mainPattyNo
+                ingredients = staff.order[i].ingredients
+                sides = staff.order[i].sides
+                drinks = staff.order[i].drinks
+                mainPrice =staff.order[i].mainPrice
+                sidePrice = staff.order[i].sidePrice
+                drinkPrice = staff.order[i].drinkPrice
+                ingredientsPrice = staff.order[i].ingredientsPrice
+                price = mainPrice + sidePrice + drinkPrice + ingredientsPrice               
+        for i in range(0,len(staff.order)):
+            if orderID == staff.order[i].orderID:
+                status = 'Ready'
+                main = staff.order[i].main
+                mainBun = staff.order[i].mainBun
+                mainBunNo = staff.order[i].mainBunNo
+                mainPatty = staff.order[i].mainPatty
+                mainPattyNo = staff.order[i].mainPattyNo
+                ingredients = staff.order[i].ingredients
+                sides = staff.order[i].sides
+                drinks = staff.order[i].drinks
+                mainPrice =staff.order[i].mainPrice
+                sidePrice = staff.order[i].sidePrice
+                drinkPrice = staff.order[i].drinkPrice
+                ingredientsPrice = staff.order[i].ingredientsPrice
+                price = mainPrice + sidePrice + drinkPrice + ingredientsPrice       
+        return render_template('StatusPage.html', orderID=orderID, main=main,
+                               mainBun=mainBun, mainBunNo=mainBunNo, mainPattyNo=mainPattyNo,
+                               mainPatty=mainPatty, ingredients=ingredients, sides=sides,
+                               drinks=drinks, price=price, status=status)
+    return render_template('StatusPage.html')
+
+@app.route('/manageInventory', methods=['POST', 'GET'])
+def manageInventory():
+    if request.method=="POST":
+        inventoryList = request.form.get('inventory')
+        for i in inventoryList:
+            index = int(i)
+            restock = 'restock'
+            restockx = restock + i
+            amount = request.form.get(restockx)
+            if amount < 0:
+                message = 'Error: negative number entered'
+                return render_template('inventory.html', message)
+            inventory.addInventory(index, amount)
+            quan0 = inventory.mainQuant[0]
+            quan1 = inventory.mainQuant[1]
+            quan2 = inventory.mainQuant[2]
+            quan3 = inventory.mainQuant[3]
+            quan4 = inventory.mainQuant[4]
+            quan5 = inventory.mainQuant[5]
+            quan6 = inventory.mainQuant[6]
+            quan7 = inventory.ingredientQuant[0]
+            quan8 = inventory.ingredientQuant[1]
+            quan9 = inventory.ingredientQuant[2]
+            quan10 = inventory.ingredientQuant[3]
+            quan11 = inventory.ingredientQuant[4]
+            quan12 = inventory.sideQuant[0]
+            quan13 = inventory.sideQuant[1]
+            quan14 = inventory.sideQuant[2]
+            quan15 = inventory.sideQuant[3]
+            quan16 = inventory.sideQuant[4]
+            quan17 = inventory.sideQuant[5]
+            quan18 = inventory.sideQuant[6]
+            quan19 = inventory.sideQuant[7]
+            quan20 = inventory.sideQuant[8]
+            return render_template('inventory.html', quan0=quan0, quan1=quan1,
+                                   quan2=quan2, quan3=quan3, quan4=quan4, quan5=quan5,
+                                   quan6=quan6, quan7=quan7, quan8=quan8, quan9=quan9,
+                                   quan10=quan10, quan11=quan11, quan12=quan12,
+                                   quan13=quan13, quan14=quan14, quan15=quan15,
+                                   quan16=quan16, quan17=quan17, quan18=quan18,
+                                   quan19=quan19, quan20=quan20)
+    quan0 = inventory.mainQuant[0]
+    quan1 = inventory.mainQuant[1]
+    quan2 = inventory.mainQuant[2]
+    quan3 = inventory.mainQuant[3]
+    quan4 = inventory.mainQuant[4]
+    quan5 = inventory.mainQuant[5]
+    quan6 = inventory.mainQuant[6]
+    quan7 = inventory.ingredientQuant[0]
+    quan8 = inventory.ingredientQuant[1]
+    quan9 = inventory.ingredientQuant[2]
+    quan10 = inventory.ingredientQuant[3]
+    quan11 = inventory.ingredientQuant[4]
+    quan12 = inventory.sideQuant[0]
+    quan13 = inventory.sideQuant[1]
+    quan14 = inventory.sideQuant[2]
+    quan15 = inventory.sideQuant[3]
+    quan16 = inventory.sideQuant[4]
+    quan17 = inventory.sideQuant[5]
+    quan18 = inventory.sideQuant[6]
+    quan19 = inventory.sideQuant[7]
+    quan20 = inventory.sideQuant[8]
+    return render_template('inventory.html', quan0=quan0, quan1=quan1,
+                                   quan2=quan2, quan3=quan3, quan4=quan4, quan5=quan5,
+                                   quan6=quan6, quan7=quan7, quan8=quan8, quan9=quan9,
+                                   quan10=quan10, quan11=quan11, quan12=quan12,
+                                   quan13=quan13, quan14=quan14, quan15=quan15,
+                                   quan16=quan16, quan17=quan17, quan18=quan18,
+                                   quan19=quan19, quan20=quan20)
+
+@app.route('/viewOrders', methods=['POST', 'GET'])
+def viewOrders():   
+    if request.method=="POST":
+        if request.form.get('complete') == 'complete':
+            staff.setStatus(0)
+            order = staff.viewOrder
+            return render_template('viewOrders.html', order=order)
+        else:
+            order = staff.viewOrder
+            return render_template('viewOrders.html', order=order)
+            
+    if any(staff.order) == False:
+        return render_template('viewOrders.html')
+    else:
+        order = staff.viewOrder
+        return render_template('viewOrders.html', order=order)
 
 # from src.location import Location
 # # from src.error import BookingError, LoginError
@@ -114,6 +394,7 @@ def home():
 
 
 # '''
+
 # Dedicated page for "page not found"
 # '''
 # @app.route('/404')

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% content block %}
+{% block content %}
 <h3>
     Here is your order. Once you have reviewed your order, <br>
     please click on 'Pay now'.
@@ -7,8 +7,8 @@
 <div>
 <form>
     <p> You have ordered the following.
-        {{main}} with {{mainBunNo}} {{mainBun}} buns and <br>
-        {{mainPattyNo}} {{mainPatty}}s. <br>
+        {{main}} with {{bun_no}} {{bun_type}} buns and <br>
+        {{patty_no}} {{patty_type}} pattiess. <br>
         {% if ingredients %}
                 Extra ingredients:
             <ul>
@@ -34,11 +34,12 @@
             </ul>
         {% endif %}
         Total price: <input type="number" name="price" value="{{ price }}" readonly> <br>
+        <input type="hidden" name="orderID" value="{{orderID}}">
     </p>
     <label>Click to pay:</label>
     <button type="submit" name="pay" value="pay">Pay Now</button> <br>
 </form>
 <label>Click below to re-do your order</label>
-<p><a href="customise.html">Go back</a></p>
+<p><a href="pre_order">Go back</a></p>
 </div>
 {% endblock %}

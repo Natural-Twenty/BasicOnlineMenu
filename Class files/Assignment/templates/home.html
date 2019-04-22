@@ -1,6 +1,4 @@
-<!--
-May need to use href={{ url_for('python_function_name')}}
--->
+
 
 {% extends 'base.html' %}
 {% block content %}
@@ -8,7 +6,7 @@ May need to use href={{ url_for('python_function_name')}}
 <h1>Welcome to our store.</h1> 
 <p>We offer you the freedom to create your very own custom burger. </p>
 <p>Click below to place an order an order <br>
-    <a href="pre-order.html"> Order now </a> <br>
+    <a href="{{ url_for('pre_order') }}"> Order now </a> <br>
 </p>
 <form method="post">
     <p>If you already have an order, enter your order ID below to check the status of that order.</p>

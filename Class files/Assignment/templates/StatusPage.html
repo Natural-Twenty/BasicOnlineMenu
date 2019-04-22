@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% content block %}
+{% block content %}
 <h3>
     Here is your order. Thank you for ordering at GourmetBurgers. <br>
     We hope you enjoy your creation.
@@ -40,4 +40,4 @@
 </form>
     <h4>Your order status: <font size="3" color="blue">{{status}}</font></h4>
 </div>
-(% endblock %)
+{% endblock %}

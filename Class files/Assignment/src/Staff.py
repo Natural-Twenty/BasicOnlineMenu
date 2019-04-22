@@ -6,7 +6,6 @@ Created on Thu Apr  4 16:41:40 2019
 @author: z5075710, The Minh Tran
 """
 #Need to validate using isinstance(x, int)/(y, str)
-from Order import Order
 class Staff:
     def __init__(self, username = None, password = None):
         self._order = []
@@ -58,7 +57,7 @@ class Staff:
     
     @property
     def viewOrder(self):
-        print(self._order[0])
+        return self._order[0]
         
     def viewAllOrder(self):
         for o in self._order:

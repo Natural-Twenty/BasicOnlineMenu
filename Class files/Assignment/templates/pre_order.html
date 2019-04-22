@@ -1,0 +1,27 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+<p> In a hurry? Don't worry. You may select either base burger or base wrap and <br>
+    we'll start making a burger or wrap in no time. A base burger or base wrap already <br>
+    has its contents pre-determined so you don't have to spend time customising. <br>
+    Otherwise, select customise to start ordering. </p>
+<form method="post">
+    <p>These are our base items.</p>
+    <div>
+        <input type="radio" name="pre_order" value="base_burger">
+        <label>Base burger - $4</label> <br>
+        <input type="radio" name="pre_order" value="base_wrap">
+        <label>Base wrap - $6</label> <br>
+        <label>Customise</label> <br>
+        <input type="radio" name="pre_order" value="customise"> Customise
+    
+    <button type="submit">Submit</button>
+    </div>
+</form>
+
+{% if message %}
+<p><font size="3" color="red">Error: Submit is only for customising, Pay Now is only for ordering base items.</font></p>
+{% endif %}
+
+{% endblock content %}

@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title><font face="verdana" color="green">GourmetBurgers</font></title>
+        <title>GourmetBurgers</title>
         <h1><font face="verdana" color="green">GourmetBurgers</font></h1>
     </head>
     <body>
         <!-- Tab Menu -->
         <h4>Navigation</h4>
         <ul>
-            <li><a href="home.html">Home</a></li>
-            <li><a href="login.html">Login</a></li>
-            <li><a href="register.html">Register</a></li>
-            <li><a href="pre-order.html">Ordering</a></li>
-            <li><a href="Inventory/inventory.html">Inventory</a></li>
-            <li><a href="viewOrders/viewOrders.html">View Orders</a></li>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('register') }}">Register</a></li>
+            <li><a href="{{ url_for('pre_order') }}">Ordering</a></li>
+            <li><a href="{{ url_for('manageInventory') }}">Inventory</a></li>
+            <li><a href="{{ url_for('viewOrders') }}">View Orders</a></li>
         </ul>
         <!-- Main Content -->
         {% block content %}{% endblock %}

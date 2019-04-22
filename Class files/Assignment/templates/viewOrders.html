@@ -5,6 +5,14 @@
         <h1><font face="verdana" color="green">GourmetBurgers Orders</font></h1>
     </head>
     <body>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('register') }}">Register</a></li>
+            <li><a href="{{ url_for('pre_order') }}">Ordering</a></li>
+            <li><a href="{{ url_for('manageInventory') }}">Inventory</a></li>
+            <li><a href="{{ url_for('viewOrders') }}">View Orders</a></li>
+        </ul>
         <form>
         <h3>This is your assigned order. <br>
             Press complete to finish the order and be assigned your next order.

@@ -1,4 +1,4 @@
-(% extends 'base.html' %)
+{% extends 'base.html' %}
 {% block content %}
 <!-- To do: 
 - Put in prices
@@ -18,15 +18,15 @@ table, th, td {
     <div>
         <label>Choose a main:</label>
         <select name="main">
-            <option value="0">Burger - $Price</option>
-            <option value="1">Wrap - $Price</option>
+            <option value="0">Burger - $2</option>
+            <option value="1">Wrap - $4</option>
         </select>
     </div>
     <div>
         <label>Select your type of bun: </label>
         <select name="bun_type">
-            <option value="1">Sesame - $Price per bun</option>
-            <option value="0">muffin - $Price per bun</option>
+            <option value="1">Sesame - $1 per bun</option>
+            <option value="0">muffin - $1 per bun</option>
         </select>
     </div>
     <div>
@@ -56,7 +56,7 @@ table, th, td {
         <label>Price per bun</label>
     </div>
     <div> <br>
-        <label>Optional: Extra ingredients. Price per ingredient.</label> <br>
+        <label>Optional: Extra ingredients. $0.5 per ingredient.</label> <br>
         <input type="checkbox" name="Ingredient" value="0"> Tomato <br>
         <input type="checkbox" name="Ingredient" value="1"> Lettuce <br>
         <input type="checkbox" name="Ingredient" value="2"> Tomato Sauce <br>
@@ -314,7 +314,7 @@ table, th, td {
     {% if out_of_stock %}
         <p>Sorry, we do not have enough of the following:</p><br>
         <ul>
-            {% for item in out_of_stock}
+            {% for item in out_of_stock %}
                 <li>{{item}}</li>       
             {% endfor %}
         </ul>
