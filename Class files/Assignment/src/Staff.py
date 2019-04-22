@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu Apr  4 16:41:40 2019
-
 @author: z5075710, The Minh Tran
 """
 #Need to validate using isinstance(x, int)/(y, str)
