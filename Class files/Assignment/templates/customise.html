@@ -18,23 +18,40 @@ table, th, td {
     <div>
         <label>Choose a main:</label>
         <select name="main">
-            <option value="burger">Burger - $Price</option>
-            <option value="wrap">Wrap - $Price</option>
+            <option value="0">Burger - $Price</option>
+            <option value="1">Wrap - $Price</option>
         </select>
     </div>
     <div>
         <label>Select your type of bun: </label>
-        <select name="main_bun_type">
-            <option value="sesame">Sesame - $Price per bun</option>
-            <option value="muffin">muffin - $Price per bun</option>
+        <select name="bun_type">
+            <option value="1">Sesame - $Price per bun</option>
+            <option value="0">muffin - $Price per bun</option>
         </select>
     </div>
     <div>
-        <label>Select the number of bun(s):</label>
-        <select name="main_bun_no">
+        <label>Select the number of buns:</label>
+        <select name="bun_no">
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
+        </select>
+        <label>Price per bun</label>
+    </div>
+    <div>
+        <label>Select the type of patty:</label>
+        <select name="patty_type">
+            <option value="0">Chicken</option>
+            <option value="1">Vegetarian</option>
+            <option value="2">Beef</option>
+        </select>
+    </div>
+    <div>
+        <label>Select the number of patty(s):</label>
+        <select name="patty_no">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
         </select>
         <label>Price per bun</label>
     </div>
@@ -56,7 +73,7 @@ table, th, td {
             <tr>
                 <th> <h3>Sides</h3> </th>
                 <th> <h3>Quantity</h3> </th>
-                <th> <h3>Price (each) </h3> </th>
+                <th> <h3>$ Price (each) </h3> </th>
             </tr>
             <tr>
                 <td> <input type="checkbox" name="Sides" value="0">3 pack nuggets </td>
@@ -69,7 +86,7 @@ table, th, td {
                         <option value="4">4</option>
                     </select> 
                 </td>
-                <td> Price goes here </td>
+                <td> 3 </td>
             </tr>
             <tr>
                 <td> <input type="checkbox" name="Sides" value="1">6 pack nuggets </td>
@@ -82,7 +99,7 @@ table, th, td {
                         <option value="4">4</option>
                     </select> 
                 </td>
-                <td>Price goes here</td>
+                <td>5</td>
             </tr>
             <tr>
                 <td> <input type="checkbox" name="Sides" value="2">Small fries </td>
@@ -95,7 +112,7 @@ table, th, td {
                         <option value="4">4</option>
                     </select> 
                 </td>
-                <td> Price goes here </td>
+                <td> 2 </td>
             </tr>
             <tr>
                 <td> <input type="checkbox" name="Sides" value="3">Medium fries </td>
@@ -108,7 +125,7 @@ table, th, td {
                         <option value="4">4</option>
                     </select> 
                 </td>
-                <td>Price goes here</td>
+                <td>3</td>
             </tr>
             <tr>
                 <td> <input type="checkbox" name="Sides" value="4">Large fries </td>
@@ -121,10 +138,10 @@ table, th, td {
                         <option value="4">4</option>
                     </select> 
                 </td>
-                <td>Price goes here</td>
+                <td>4</td>
             </tr>
             <tr>
-                <td> <input type="checkbox" name="Sides" value="5"> Small Sundae - Chocolate </td>
+                <td> <input type="checkbox" name="Sides" value="5"> Small Sundae-Chocolate </td>
                 <td> 
                     <select name="repeat5">
                         <option value="0" selected>0</option>
@@ -134,10 +151,10 @@ table, th, td {
                         <option value="4">4</option>
                     </select> 
                 </td>
-                <td>Price goes here</td>
+                <td>3</td>
             </tr>
             <tr>
-                <td> <input type="checkbox" name="Sides" value="6">Medium Sundae - Chocolate </td>
+                <td> <input type="checkbox" name="Sides" value="6">Medium Sundae-Chocolate </td>
                 <td> 
                     <select name="repeat6">
                         <option value="0" selected>0</option>
@@ -147,10 +164,10 @@ table, th, td {
                         <option value="4">4</option>
                     </select> 
                 </td>
-                <td>Price goes here</td>
+                <td>4</td>
             </tr>
             <tr>
-                <td> <input type="checkbox" name="Sides" value="7">Large Sundae - Chocolate </td>
+                <td> <input type="checkbox" name="Sides" value="7">Large Sundae-Chocolate </td>
                 <td> 
                     <select name="repeat7">
                         <option value="0" selected>0</option>
@@ -160,10 +177,10 @@ table, th, td {
                         <option value="4">4</option>
                     </select> 
                 </td>
-                <td>Price goes here</td>
+                <td>5</td>
             </tr>
             <tr>
-                <td> <input type="checkbox" name="Sides" value="8">Small Sundae - Strawberry </td>
+                <td> <input type="checkbox" name="Sides" value="8">Small Sundae-Strawberry </td>
                 <td> 
                     <select name="repeat8">
                         <option value="0" selected>0</option>
@@ -173,10 +190,10 @@ table, th, td {
                         <option value="4">4</option>
                     </select> 
                 </td>
-                <td>Price goes here</td>
+                <td>3</td>
             </tr>
             <tr>
-                <td> <input type="checkbox" name="Sides" value="9">Medium Sundae - Strawberry </td>
+                <td> <input type="checkbox" name="Sides" value="9">Medium Sundae-Strawberry </td>
                 <td> 
                     <select name="repeat9">
                         <option value="0" selected>0</option>
@@ -186,10 +203,10 @@ table, th, td {
                         <option value="4">4</option>
                     </select> 
                 </td>
-                <td>Price goes here</td>
+                <td>4</td>
             </tr>
             <tr>
-                <td> <input type="checkbox" name="Sides" value="10">Large Sundae - Strawberry </td>
+                <td> <input type="checkbox" name="Sides" value="10">Large Sundae-Strawberry </td>
                 <td> 
                     <select name="repeat10">
                         <option value="0" selected>0</option>
@@ -198,7 +215,7 @@ table, th, td {
                         <option value="3">3</option>
                         <option value="4">4</option>
                     </select> </td>
-                <td>Price goes here</td>
+                <td>5</td>
             </tr>
         </table>
     </div>
@@ -228,7 +245,7 @@ table, th, td {
                         <option value="4">4</option>
                     </select>
                 </td>
-                <td>Price goes here</td>
+                <td>2</td>
             </tr>
             <tr>
                 <td><input type="checkbox" name="Drinks" value="1">Bottle of Coke </td>
@@ -241,7 +258,7 @@ table, th, td {
                         <option value="4">4</option>
                     </select>
                 </td>
-                <td>Price goes here</td>
+                <td>3</td>
             </tr>
             <tr>
                 <td><input type="checkbox" name="Drinks" value="2">Small Orange Juice </td>
@@ -254,7 +271,7 @@ table, th, td {
                         <option value="4">4</option>
                     </select>
                 </td>
-                <td>Price goes here</td>
+                <td>1</td>
             </tr>
             <tr>
                 <td><input type="checkbox" name="Drinks" value="3">Medium Orange Juice </td>
@@ -267,7 +284,7 @@ table, th, td {
                         <option value="4">4</option>
                     </select>
                 </td>
-                <td>Price goes here</td>
+                <td>2</td>
             </tr>
             <tr>
                 <td><input type="checkbox" name="Drinks" value="4">Large Orange Juice </td>
@@ -280,7 +297,7 @@ table, th, td {
                         <option value="4">4</option>
                     </select>
                 </td>
-                <td>Price goes here</td>
+                <td>3   </td>
             </tr>
         </table>
     </div>

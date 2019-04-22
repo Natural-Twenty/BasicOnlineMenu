@@ -19,25 +19,28 @@ Submitting with 'customise' option will redirect to 'customise.html' page.
     Otherwise, select customise to start ordering.
 </p>
 <form method="post">
+    <p>These are our base items.</p>
     <div>
         <input type="radio" name="pre_order" value="base_burger">
-        <label>Base burger - $Price goes here</label> <br>
+        <label>Base burger - $2</label> <br>
     </div>
     <div>
         <input type="radio" name="pre_order" value="base_wrap">
-        <label>Base wrap - $Price goes here</label> <br>
+        <label>Base wrap - $4</label> <br>
+<!--
     </div>
-    {% if base %}
-        <p>You have selected: {{base}}. Click 'Pay Now' to order. <br>
-            Or choose another option and resumbit if you have changed your mind.
-        </p>
+    <p>Press 'Pay Now' to order your base item</p>
         <button type="submit" value="pay">Pay Now</button>
-    {% endif %}
     <div>
-        <input type="radio" name="pre_order" value="customise">
+        <p>Otherwise, select 'customise' and submit to start creating</p>
+-->
         <label>Customise</label> <br>
+        <input type="radio" name="pre_order" value="customise"> Customise
     </div>
-    <button type="submit" value="Next">Submit</button>
+    <button type="submit" name="next" value="next">Submit</button>
 </form>
 
+{% if message %}
+<p><font size="3" color="red">Error: "Submit" is only for customising, "Pay Now" is only for ordering base items.</font></p>
+{% endif %}
 {% endblock %}

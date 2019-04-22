@@ -7,7 +7,7 @@
 <h4>Your Order ID: {{orderID}}</h4>
 <div>
     <p> You have ordered the following.
-        {{main}} with {{main_bun_no}} {{main_bun_type}} buns. <br>
+        {{main}} with {{bun_no}} {{bun_type}} buns and {{patty_type}} {{patty_no}} <br>
         {% if ingredients %}
                 Extra ingredients:
             <ul>
@@ -34,9 +34,10 @@
         {% endif %}
         Total price: ${{price}} <br>
     </p>
+<form>
     <label>Click to refresh the page and see if your order is ready:</label>
     <button type="submit" name="next" value="next">Refresh page</button> <br>
+</form>
     <h4>Your order status: <font size="3" color="blue">{{status}}</font></h4>
-
 </div>
 (% endblock %)
