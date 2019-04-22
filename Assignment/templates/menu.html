@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+
+
+<style>
+            table, th, td {
+                border: 1px solid black;
+            }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+
+<body>
+    <form method = "POST">
+        <p>Menu</p>
+        <table>
+            <tr>
+                <th><h3>Confirm</h3></th>
+                <th><h3>Item</h3></th>
+                <th><h3>unitPrice</h3></th>
+                <th><h3>Quantity</h3></th>
+
+            {% for ele in a %}
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="{{ele.name}}" value="True"></td>
+                <td>{{ele.name}}</td>
+                <td>{{ele.unitPrice}}</td>
+                <td><input type="number" name="{{ele.name}}_number" placeholder="Enter integer above zero"></td>
+                <input type="hidden" >
+            </tr>
+        {% endfor %}
+        </table>
+        <input type="submit" value="submit">
+        <input type="hidden" name="menu" value='True'>
+    </form>
+
+</body>
+</html>
+    
+{% endblock %}
+
