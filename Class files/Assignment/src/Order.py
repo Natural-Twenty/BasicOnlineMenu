@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Apr  5 16:43:40 2019
-
 @author: z5075710
 """
 import random
