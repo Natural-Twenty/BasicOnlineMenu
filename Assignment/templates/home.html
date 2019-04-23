@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Welcome to our store.</h1>
+<p>We offer you the freedom to create your very own custom burger. </p>
+<p>Click below to place an order an order <br>
+    <a href="/menu"> Order now </a> <br>
+</p>
+
+{% if admin %}
+	<a href="/inventory"> Check Inventory </a> <br>
+{% endif%}
+
+{% if admin %}
+	<a href="/orders"> Check Orders</a> <br>
+{% endif %}
+<br>
+Here is Your Orders:
+<br>
+{% for order in user.orders %}
+OrderID: {{order.number}}<br>
+{% for food in order.foods%}
+	Foods: {{food.name}} {{food.quantity}} {{food.unitPrice}}<br>
+	
+{% endfor%}
+Total Price:<br>
+	{{order.price}}<br>
+{% endfor %}
+
+
+
+
+<form method="post">
+    <p>If you already have an order, enter your order ID below to check the status of that order.</p>
+    <input type="number" name="orderID" placeholder="Enter your order ID" required>
+    <button type="submit" name="checkID" value="checkID">Check status</button>
+</form>
+
+{% if message %}
+    <font size="3" color="red">Error: Incorrect order ID. Please check your order ID</font>
+{% endif %}
+
+{% endblock %}
+
+

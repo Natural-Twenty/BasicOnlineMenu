@@ -1,0 +1,311 @@
+(% extends 'base.html' %)
+{% block content %}
+<!-- To do: 
+- Put in prices
+-->
+<head> 
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+</head>
+
+<h1>Customising your creation</h1>
+<form method="post"> 
+    
+    <h2> <a name="main">Customise your main!</a></h2>
+    <div>
+        <label>Choose a main:</label>
+        <select name="main">
+            <option value="burger">Burger - $Price</option>
+            <option value="wrap">Wrap - $Price</option>
+        </select>
+    </div>
+    <div>
+        <label>Select your type of bun: </label>
+        <select name="main_bun_type">
+            <option value="sesame">Sesame - $Price per bun</option>
+            <option value="muffin">muffin - $Price per bun</option>
+        </select>
+    </div>
+    <div>
+        <label>Select the number of bun(s):</label>
+        <select name="main_bun_no">
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+        <label>Price per bun</label>
+    </div>
+    <div> <br>
+        <label>Optional: Extra ingredients. Price per ingredient.</label> <br>
+        <input type="checkbox" name="Ingredient" value="0"> Tomato <br>
+        <input type="checkbox" name="Ingredient" value="1"> Lettuce <br>
+        <input type="checkbox" name="Ingredient" value="2"> Tomato Sauce <br>
+        <input type="checkbox" name="Ingredient" value="3"> Cheddar Cheese <br>
+        <input type="checkbox" name="Ingredient" value="4"> Swiss Cheese <br>
+    </div>
+    <h2> <a name="SidesAndDrinks">Optional: Sides and Drinks</a></h2>
+    <div>
+        <p> 
+            Select what and how many sides you wish to order.
+            You may only choose up to 4 sides each per order.
+        </p>
+        <table>
+            <tr>
+                <th> <h3>Sides</h3> </th>
+                <th> <h3>Quantity</h3> </th>
+                <th> <h3>Price (each) </h3> </th>
+            </tr>
+            <tr>
+                <td> <input type="checkbox" name="Sides" value="0">3 pack nuggets </td>
+                <td> 
+                    <select name="repeat0">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select> 
+                </td>
+                <td> Price goes here </td>
+            </tr>
+            <tr>
+                <td> <input type="checkbox" name="Sides" value="1">6 pack nuggets </td>
+                <td> 
+                    <select name="repeat1">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select> 
+                </td>
+                <td>Price goes here</td>
+            </tr>
+            <tr>
+                <td> <input type="checkbox" name="Sides" value="2">Small fries </td>
+                <td> 
+                    <select name="repeat2">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select> 
+                </td>
+                <td> Price goes here </td>
+            </tr>
+            <tr>
+                <td> <input type="checkbox" name="Sides" value="3">Medium fries </td>
+                <td> 
+                    <select name="repeat3">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select> 
+                </td>
+                <td>Price goes here</td>
+            </tr>
+            <tr>
+                <td> <input type="checkbox" name="Sides" value="4">Large fries </td>
+                <td> 
+                    <select name="repeat4">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select> 
+                </td>
+                <td>Price goes here</td>
+            </tr>
+            <tr>
+                <td> <input type="checkbox" name="Sides" value="5"> Small Sundae - Chocolate </td>
+                <td> 
+                    <select name="repeat5">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select> 
+                </td>
+                <td>Price goes here</td>
+            </tr>
+            <tr>
+                <td> <input type="checkbox" name="Sides" value="6">Medium Sundae - Chocolate </td>
+                <td> 
+                    <select name="repeat6">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select> 
+                </td>
+                <td>Price goes here</td>
+            </tr>
+            <tr>
+                <td> <input type="checkbox" name="Sides" value="7">Large Sundae - Chocolate </td>
+                <td> 
+                    <select name="repeat7">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select> 
+                </td>
+                <td>Price goes here</td>
+            </tr>
+            <tr>
+                <td> <input type="checkbox" name="Sides" value="8">Small Sundae - Strawberry </td>
+                <td> 
+                    <select name="repeat8">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select> 
+                </td>
+                <td>Price goes here</td>
+            </tr>
+            <tr>
+                <td> <input type="checkbox" name="Sides" value="9">Medium Sundae - Strawberry </td>
+                <td> 
+                    <select name="repeat9">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select> 
+                </td>
+                <td>Price goes here</td>
+            </tr>
+            <tr>
+                <td> <input type="checkbox" name="Sides" value="10">Large Sundae - Strawberry </td>
+                <td> 
+                    <select name="repeat10">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select> </td>
+                <td>Price goes here</td>
+            </tr>
+        </table>
+    </div>
+    <h2><a name="Drinks">Drinks</a></h2>
+    <p> 
+        Select what and how many drinks you would like to order. <br>
+        All canned drinks are in 375mL cans. <br>
+        All bottled drinks are in 600mL bottles <br>
+        Small drinks contain 250mL, medium contain 450mL, large contain 650mL <br>
+        You may only order up to 4 drinks each.
+    </p>
+    <div>
+        <table>
+            <tr>
+                <th><h3> Drinks </h3></th>
+                <th><h3> Quantity </h3></th>
+                <th><h3> Price (each)</h3></th>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="Drinks" value="0">Can of Coke </td>
+                <td>
+                    <select name="repeat0">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </td>
+                <td>Price goes here</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="Drinks" value="1">Bottle of Coke </td>
+                <td>
+                    <select name="repeat1">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </td>
+                <td>Price goes here</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="Drinks" value="2">Small Orange Juice </td>
+                <td>
+                    <select name="repeat2">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </td>
+                <td>Price goes here</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="Drinks" value="3">Medium Orange Juice </td>
+                <td>
+                    <select name="repeat3">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </td>
+                <td>Price goes here</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="Drinks" value="4">Large Orange Juice </td>
+                <td>
+                    <select name="repeat4">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </td>
+                <td>Price goes here</td>
+            </tr>
+        </table>
+    </div>
+    <label>Check your order before submitting! We wouldn't want you to make a mistake on your order. <br>
+        Go to:
+    </label>
+    <ul>
+        <li><a href="#main"> Main </a></li>
+        <li><a href="#SidesAndDrinks"> Sides </a></li>
+        <li><a href="#Drinks"> Drinks </a></li>
+    </ul>
+    <label>You can check price by clicking:</label>
+    <button type="submit" name="checkPrice" value="checkPrice">Check price</button>
+    {% if out_of_stock %}
+        <p>Sorry, we do not have enough of the following:</p><br>
+        <ul>
+            {% for item in out_of_stock}
+                <li>{{item}}</li>       
+            {% endfor %}
+        </ul>
+    {% elif price %}
+        <p>Total price: {{price}}</p>
+        <p>Once you are done checking your order. Click submit to proceed to payment.</p>
+        <button type="submit" name="submit" value="submit">Pay now</button><br>
+    {% endif %}
+</form>
+
+{% endblock %}

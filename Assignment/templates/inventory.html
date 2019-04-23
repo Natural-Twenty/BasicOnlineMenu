@@ -1,0 +1,53 @@
+<!-- To do:
++Complete the values field
+-- Description of this file --
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title><font face="verdana" color="green">GourmetBurgers Inventory Management</font></title>
+        <h1><font face="verdana" color="green">GourmetBurgers Inventory Management</font></h1>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <h3><font size="3" color="blue">Instructions</font></h3>
+        <p>
+            Check the boxes for the items you wish to restock, then input the value you are restocking by.
+        </p>
+        <h3>
+            Be sure yo double check your inputs. <br>
+            Only enter integers above 0.
+        </h3>
+        <form method="POST">
+            <table>
+            <tr>
+                <th><h3>Item</h3></th>
+                <th><h3>Quantity</h3></th>
+                <th><h3>Unit</h3></th>
+                <th><h3>Restock</h3></th>
+            </tr>
+            {% for ele in inve%}
+            <tr>
+                <td>{{ele.name}}</td>
+                <td>{{ele.quantity}}</td>
+                <td>{{ele.unit}}</td>
+                <td><input type="number" name="{{ele.name}}" placeholder="Enter integer above zero"></td>
+            </tr>
+            {% endfor %}
+
+
+
+            
+        </table>
+        <button type="submit" name="submit" value="restock">Submit</button>
+        </form>
+        
+        
+    </body>
+</html>
