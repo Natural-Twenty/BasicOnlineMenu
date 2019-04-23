@@ -78,4 +78,9 @@ def order_system():
 	system.add_main(burger2)
 	system.add_main(wrap1)
 	system.add_main(wrap2)
+	system.add_main(Side1)
+	system.add_main(Side2)
+	system.add_main(Side3)
+	system.add_main(Side4)
+	system.add_main(Side5)
 	return system
