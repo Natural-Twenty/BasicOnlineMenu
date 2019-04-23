@@ -201,12 +201,12 @@ def orders():
             ele.status = 1
 
 
-    for ele in system.customerList:
-        if session['username'] == ele.username:
-            user = ele
-            if session['username'] == 'admin':
-                admin = 'True'
-        return render_template('home.html',user = user, admin = admin)
+        for ele in system.customerList:
+            if session['username'] == ele.username:
+                user = ele
+                if session['username'] == 'admin':
+                    admin = 'True'
+            return render_template('home.html',user = user, admin = admin)
 
     return render_template('viewOrders.html',orders = system.orderList)
 '''
